@@ -42,6 +42,23 @@
     "messages_testNumber_label"			: "测试号码",
     "messages_serviceGroup_label"		: "服务组",
     "messages_messageRequest_label"		: "消息请求",
-    "messages_showingResults_label"		: "显示结果日期范围:"
+    "messages_showingResults_label"		: "显示结果日期范围:",
+    "listingReports_listingReports_label"       : "Listing Reports",
+    "listingReports_revisedReports_label"       : "Revised Reports",
+    "listingReports_details_tab_label"          : "Details",
+    "listingReports_reportNumber_label"         : "Report Number",
+    "administration_administration_label"       : "Administration",
+    "administration_details_tab_label"          : "Details",
+    "administration_reportCategories_label"     : "Report Categories",
+    "administration_selectionFrequency_label"   : "Selection Frequency",
+    "administration_CEClocations_label"         : "CEC Locations", 
+    "administration_services_marks_label"       : "Services / Marks",
+    "administration_name_label"                 : "Name",
+    "administration_memoText_label"             : "Description",
+    "administration_keyCode_label"              : "Businesss Code",
+    "administration_status_label"               : "Status",
+    "administration_active_label"               : "Is Active",
+    "administration_add_reportCategory_label"   : "Add Report Category",
+    "administration_name_required_label"        : "Name is a required field."
 
   }
