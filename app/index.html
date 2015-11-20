@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="ie9 layout-pf-alt layout-pf-alt-fixed layout-pf-alt-fixed-with-footer layout-pf-alt-fixed-inner-scroll"><![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="layout-pf-alt layout-pf-alt-fixed layout-pf-alt-fixed-with-footer layout-pf-alt-fixed-inner-scroll" ng-app="saffModuleApp">
+<!--<![endif]-->
+<head>
+  <title ng-bind="title">Transmition Log</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../../dist/img/favicon.ico">
+  <!-- iPad retina icon -->
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/dist/img/apple-touch-icon-precomposed-152.png">
+  <!-- iPad retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/dist/img/apple-touch-icon-precomposed-144.png">
+  <!-- iPad non-retina icon -->
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/dist/img/apple-touch-icon-precomposed-76.png">
+  <!-- iPad non-retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/dist/img/apple-touch-icon-precomposed-72.png">
+  <!-- iPhone 6 Plus icon -->
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/dist/img/apple-touch-icon-precomposed-180.png">
+  <!-- iPhone retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/dist/img/apple-touch-icon-precomposed-114.png">
+  <!-- iPhone non-retina icon (iOS < 7) -->
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/dist/img/apple-touch-icon-precomposed-57.png">
+  <link href="/dist/css/patternfly.min.css" rel="stylesheet" media="screen, print">
+  <link href="/dist/css/patternfly-additions.min.css" rel="stylesheet" media="screen, print"> 
+  <link href="/dist/css/angular-busy.css" rel="stylesheet" media="screen">
+  <link href="/dist/css/common.css" rel="stylesheet" media="screen">
+
+  <script src="/components/jquery/dist/jquery.min.js"></script>
+  <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+  <script src="/components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.sv.min.js"></script>
+  <script src="/components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+  <script src="/components/momentjs/moment.js"></script>
+  <script src="/components/matchHeight/jquery.matchHeight-min.js"></script>
+  <script src="/dist/js/patternfly.min.js"></script>
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular-animate.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular-sanitize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular-resource.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular-route.min.js"></script>  
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.17/angular-cookies.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+  <script src="/components/angular-ui/ui-bootstrap-tpls-0.14.2.min.js"></script>  
+  <script src="/components/underscore/underscore-min.js"></script>
+  <script src="/components/c3/c3.min.js"></script>
+  <script src="/components/d3/d3.min.js"></script>
+  <!--<script src="/components/angular-chart/angular-chart.js"></script> -->
+  <!--<script src="/components/c3-angular-directive/js/c3-angular.min.js"></script>-->
+  <script src="/components/angular-translate/angular-translate.js"></script>
+  <script src="/components/angular-translate/angular-translate-storage-cookie.js"></script>
+  <script src="/components/angular-translate/angular-translate-storage-local.js"></script>
+  <script src="/components/angular-translate/angular-translate-loader-static-files.js"></script>
+
+
+  <script src="/components/c3-charts/c3-chart.js"></script>
+  
+  <!-- Application JS -->
+  <script src="/dist/js/utility-functions.js"></script>
+  <script src="/app/require.js"></script>
+</head>
+<body ng-controller="languageController">
+  <nav class="navbar navbar-pf-alt" ng-hide="$state.includes('login')">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">
+        <img class="navbar-brand-icon" height="32" src="../../dist/img/logo-header-md@2x.png" alt=""/>
+      </a>
+    </div>
+    <nav class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right navbar-iconic">
+        <li>
+          <a class="nav-item-iconic" ui-sref="message-grid" ng-class="{active:$state.includes('message-grid')}">
+            <span title="{{'main_nav_alternateLayout_label' | translate}}" class="fa fa-th"></span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-item-iconic" ui-sref="message" ng-class="{active:$state.includes('message') || $state.includes('search-message')}" >
+            <span title="{{'main_nav_defaultLayout_label' | translate}}" class="fa fa-th-list"></span>
+          </a>
+        </li>
+
+        <li>
+          <a class="nav-item-iconic" href="admin.html" ng-class="{active:$state.includes('administration')}">
+            <span title="{{'main_nav_alternateLayout_label' | translate}}" class="fa fa-key"></span>
+          </a>
+        </li>
+
+        <li class="dropdown">
+          <a class="dropdown-toggle nav-item-iconic" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <span title="" class="fa pficon-user"></span>
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <li><a href="../app/st_login.html">{{'main_nav_logOut_label' | translate}}</a></li>
+            <li class="dropdown-submenu pull-left">
+                <a href="#">{{'main_nav_languages_label' | translate}}</a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" ng-click="changeLanguage('en')">{{'main_nav_english_label' | translate}}</a></li>
+                  <li><a href="#"  ng-click="changeLanguage('sv')">{{'main_nav_swedish_label' | translate}}</a></li>
+                  <li><a href="#"  ng-click="changeLanguage('zh-CN')">{{'main_nav_chineese_label' | translate}}</a></li>
+                </ul>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </nav>    
+  </nav> <!--/.navbar-->
+
+  <nav class="nav-pf-vertical-alt sidebar-pf sidebar-pf-left"  ng-hide="$state.includes('login')">
+    <ul class="list-group" style="">
+      <li class="list-group-item" ng-class="{active:$state.includes('dashboard')}">
+        <a ui-sref="dashboard">
+          <span class="fa fa-dashboard" title="{{ 'main_nav_dashboard_label' | translate }}" data-toggle="tooltip" data-placement="right"></span>
+          <span class="list-group-item-value">{{ 'main_nav_dashboard_label' | translate }}</span>
+        </a>
+      </li>
+      <li class="list-group-item" ng-class="{active: $state.includes('message') || $state.includes('search-message') || $state.includes('message-grid') }">
+        <a ui-sref="message">
+          <span class="fa fa-comment" title="{{'main_nav_messages_label' | translate}}" data-toggle="tooltip" data-placement="right"></span>
+          <span class="list-group-item-value">{{'main_nav_messages_label' | translate}}</span>
+          <span class="badge hide">21</span>
+        </a>
+    </li>
+    <li class="list-group-item hidden-sm hidden-md hidden-lg" ng-class="{active: $state.includes('message-grid') }">
+            <a ui-sref="message-grid">
+              <span class="fa fa-th" title="{{'main_nav_alternateLayout_label' | translate}}"></span>
+              <span class="list-group-item-value">{{'main_nav_alternateLayout_label' | translate}}</span>
+            </a>
+          </li>
+      <li class="list-group-item" ng-class="{active:$state.includes('revisedReports')}">
+        <a ui-sref="revisedReports">
+          <span class="fa fa-clipboard" title="{{'main_nav_revisedReports_label' | translate}}" data-toggle="tooltip" data-placement="right"></span>
+          <span class="list-group-item-value">{{'main_nav_revisedReports_label' | translate}}</span>
+        </a>
+      </li>
+      <li class="list-group-item" ng-class="{active:$state.includes('listingReports')}">
+        <a ui-sref="listingReports">
+          <span class="fa fa-file-text-o" title="{{'main_nav_listingReports_label' | translate}}" data-toggle="tooltip" data-placement="right"></span>
+          <span class="list-group-item-value">{{'main_nav_listingReports_label' | translate}}</span>
+        </a>
+      </li>
+      <li class="list-group-item  hidden-sm hidden-md hidden-lg" ng-class="{active:$state.includes('administration')}">
+        <a href="admin.html">
+          <span class="fa fa-key" title="{{'main_nav_administration_label' | translate}}" data-toggle="tooltip" data-placement="right"></span>
+          <span class="list-group-item-value">{{'main_nav_administration_label' | translate}}</span>
+        </a>
+      </li>
+    <li class="list-group-item hidden-sm hidden-md hidden-lg">
+      <a href="#">
+        <span class="fa fa-sign-out" title="{{'main_nav_logOut_label' | translate}}"></span>
+        <span class="list-group-item-value">{{'main_nav_logOut_label' | translate}}</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+<div class="container-fluid container-pf-alt-nav-pf-vertical-alt ui-root-container">
+ <div id="ui-view" ui-view cg-busy="[messages,revisedReports,listingReports]"></div>
+</div>
+<footer class="container-fluid footer-pf-alt">
+  <p>2015 &copy; Intertek Group plc</p>
+</footer>
+
+<script>
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+</script>
+</body>
+</html>

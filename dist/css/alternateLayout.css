@@ -1,0 +1,30 @@
+
+
+div.row.search {margin-bottom:15px;}
+
+.noResultsMsg {display:block;text-align:center;margin-top:15px;}
+
+.st_label {color:#444;}
+.st_data {color:#999;}
+
+.searchFilterMessage {float:right;color:#999;}
+
+
+.cardList li table {width:100%;}
+.cardList li table th {
+    vertical-align:top;
+    width:40%;
+    padding-right:10px;
+    @media (max-width: 768px) {
+      width:30%;
+    }
+}
+.cardList li table td {
+    vertical-align:top;
+    width:60%;
+    @media (max-width: 768px) {
+      width:70%;
+    }
+}
+
+

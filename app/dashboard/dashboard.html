@@ -1,0 +1,89 @@
+<div class="row">
+  <div id="dahboardGraphsColumn" class="col-sm-8 col-md-9" ng-init="hideFilterDiv = true">
+
+    <div class="page-header page-header-bleed-right">
+      <div class="actions pull-right">
+          <a href ng-click="hideFilterDiv = !hideFilterDiv"><span class="pficon pficon-settings"></span>{{ 'dashboard_filterResults_label' | translate }}</a>
+        &nbsp;
+        <a href ng-click="refreshMessages()"><span class="pficon pficon-refresh"></span> {{ 'dashboard_refreshResults_label' | translate }}</a>
+      </div>
+      <h1>{{ 'dashboard_dashboard_label' | translate }}</h1>
+    </div>
+    <div ng-hide="hideFilterDiv" class="row slide">
+      <div class="col-sm-12 col-md-4">
+        <div ng-repeat="firstColumnDateRange in dateRangesCollections.firstColumn">
+          <a href a-disabled="checkActiveDateRangeFilter(firstColumnDateRange.startDate, firstColumnDateRange.endDate)" ng-click="filterByDateRange(firstColumnDateRange.startDate, firstColumnDateRange.endDate)" >{{firstColumnDateRange.name}}</a>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div ng-repeat="secondColumnDateRange in dateRangesCollections.secondColumn">
+          <a href a-disabled="checkActiveDateRangeFilter(secondColumnDateRange.startDate, secondColumnDateRange.endDate)" ng-click="filterByDateRange(secondColumnDateRange.startDate, secondColumnDateRange.endDate)" >{{secondColumnDateRange.name}}</a>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <div ng-repeat="thirdColumnDateRange in dateRangesCollections.thirdColumn">
+          <a href a-disabled="checkActiveDateRangeFilter(thirdColumnDateRange.startDate, thirdColumnDateRange.endDate)" ng-click="filterByDateRange(thirdColumnDateRange.startDate, thirdColumnDateRange.endDate)" >{{thirdColumnDateRange.name}}</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="h4">{{ 'dashboard_timeSeries_label' | translate }}</h2>
+    <div cg-busy="{promise:timeseriesChartResponse,message:'',delay:0,minDuration:300,templateUrl:'../common/progress_template.html'}">
+      <c3-chart id="timeSeriesChart" config="timeSeriesChartConfig"></c3-chart>
+    </div>
+    <hr>
+    <h2 class="h4">{{ 'dashboard_donutAndBarChart_label' | translate }}</h2>
+    <div class="row">
+      <div class="col-sm-12 col-md-6" cg-busy="{promise:donutChartResponse,message:'',delay:0,minDuration:300,templateUrl:'../common/progress_template.html'}">
+        <c3-chart id="donutChart" config="donutChartConfig"></c3-chart>
+      </div>
+      <div class="col-sm-12 col-md-6" cg-busy="{promise:barChartResponse,message:'',delay:0,minDuration:300,templateUrl:'../common/progress_template.html'}">
+        <c3-chart id="barChart" config="barChartConfig"></c3-chart>
+      </div>
+    </div>
+   
+  </div><!-- /col -->
+  <div id="dahboardMessagesColumn" class="col-sm-4 col-md-3 sidebar-pf sidebar-pf-right">
+    <div class="sidebar-header sidebar-header-bleed-left sidebar-header-bleed-right">
+      <div class="showMessages">
+       <span>{{ 'dashboard_show_label' | translate }}</span>
+        <select ng-model="limitLatestMessages" ng-change="updateLatestMessages()" >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="25">25</option>
+        </select>
+      </div>
+      <h2 class="h5">
+        {{'dashboard_latestMessages_label' | translate}}
+      </h2> 
+    </div>
+    <ul class="list-group" cg-busy="{promise:latestMessages.$promise,message:'',delay:0,minDuration:300,templateUrl:'../common/progress_template.html'}">
+      <li class="list-group-item" ng-repeat="latestMessage in latestMessages">
+        <div class="messageSubject">
+          <i class="fa fa-comment fa-fw"></i>
+          {{latestMessage.messageType}} - {{latestMessage.testId}}
+        </div>
+        <div class="dateStamp">{{latestMessage.dateStamp | saffDateTimeFormat}}</div>
+      </li>      
+    </ul>
+    <p><a ui-sref="message">{{ 'dashboard_findMessages_label' | translate }}</a></p>
+  </div><!-- /col -->
+</div><!-- /row --> 
+
+<link href="../../dist/css/dashboard.css" rel="stylesheet" media="screen, print">
+
+
+<script>
+
+  $('.ui-root-container').attr('id','dashboard');
+  function setUI(){
+    $(".nav-pf-vertical-alt, #dahboardGraphsColumn, #dahboardMessagesColumn").matchHeight()
+  }
+  $(window).bind("resize", function() {
+    setUI();    
+  });
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+    setUI();
+  });
+</script>

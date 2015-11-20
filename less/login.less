@@ -1,0 +1,102 @@
+//
+// Login
+// --------------------------------------------------
+
+.login-pf {
+  height: 100%;
+  #brand {
+    position: relative;
+    top: 0px;
+    padding:13px 15px;
+    background-color:@navbar-pf-bg-color;
+    border-top:3px solid @navbar-pf-border-color;
+    border-bottom:1px solid @sidebar-pf-border-color;
+    img {
+      display: block;
+      height: 32px;
+      margin: 0 auto;
+      max-width: 100%;
+      @media (min-width: @screen-sm-min) {
+        margin: 0;
+        text-align: left;
+      }
+    }
+  }
+  #badge {
+    display: block;
+    margin: 20px auto 70px;
+    position: relative;
+    text-align: center;
+    @media (min-width: @screen-sm-min) { 
+      float: right;
+      margin-right: 64px;
+      margin-top: 50px;
+    }
+  }
+  body {
+    background-color: @login-bg-color;
+    
+    background: @login-bg-color url("@{img-path}/@{img-bg-login}") no-repeat center bottom;
+    
+    background-size: 5%;
+    background-position-y: 98%;
+
+    @media (min-width: @screen-sm-min) {
+      
+    }
+    
+  }
+  .container {
+    border:1px solid @sidebar-pf-border-color;
+    border-radius:12px;
+    background-color: @login-container-bg-color;
+    background-color: @login-container-bg-color-rgba;
+    color: #444;
+    padding-bottom: 40px;
+    padding-top: 20px;
+    margin:20px auto;
+    width: 300px;
+    @media (min-width: @screen-sm-min) {
+      margin: 50px auto;
+      text-align: left;
+    }
+    .form-horizontal {
+      .form-group {
+        margin-left:0px;
+        margin-right:0px;
+      }
+      .control-label {
+        font-size: @font-size-base + 1;
+        font-weight: 600;
+        color:#666;
+        text-align: left;
+      }
+      .form-group:last-child {
+        &, .help-block:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    .help-block {
+      color: #444;
+    }
+    .login {
+      @media (min-width: @screen-sm-min) {
+        padding-right: 40px;
+      }
+    }
+    .submit {
+      margin-top:10px;
+      text-align: left;
+      button {
+        padding:0px;
+        width:150px;    
+        height:28px;
+        border-radius:3px;
+        font-size:16px;
+        width:150px;
+
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="msgId"> {{revisedReport.name}} </h2>
+    
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="javascript:void(0);#details" data-toggle="tab">{{ 'listingReports_details_tab_label' | translate }}</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="details">
+        <div class="st_button_bar">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-ng-click="save()">Approve Report</button>
+          <button class="btn btn-default dropdown-toggle" type="button" data-ng-click="cancel()">Cancel Report</button>
+        </div> 
+
+          <uib-accordion close-others="oneAtATime">
+            <uib-accordion-group is-open="status.isFirstOpen">
+                <uib-accordion-heading>
+                  Listing Report Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-up': !status.open}"></i>
+                </uib-accordion-heading>
+                
+                  <ul class="list-group" id="detailsList">
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_reportNumber_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                   
+                  </ul>
+            </uib-accordion-group>   
+            
+            <uib-accordion-group is-open="false">
+                <uib-accordion-heading>
+                  Standards / Test Methods <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-up': !status.open}"></i>
+                </uib-accordion-heading>
+                
+                  <ul class="list-group" id="detailsList">
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_reportNumber_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                   
+                  </ul>
+            </uib-accordion-group>   
+          </uib-accordion>
+
+
+
+      </div><!-- /details tab -->        
+    </div><!-- /tab-content -->
+
+  </div><!-- /col -->
+</div><!-- /row -->
+
+<script type="text/ng-template" id="group-template.html">
+    <div class="panel {{panelClass || 'panel-default'}}">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+      </div>
+    </div>
+  </script>

@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="msgId"> {{reportCategory.name}} </h2>
+    
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="javascript:void(0);#details" data-toggle="tab">{{ 'administration_details_tab_label' | translate }}</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="details">
+        <div class="st_button_bar">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-ng-click="save()">Save</button>
+          <button class="btn btn-default dropdown-toggle" type="button" data-ng-click="cancel()">Cancel</button>
+        </div> 
+
+         
+                <form class="form-horizontal">
+            <div class="form-group">
+              <label for="name" class="col-sm-3 control-label">{{ 'administration_name_label' | translate }}</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="name" placeholder="Name" required value="{{reportCategory.name}}">
+                <span class="text-danger" ng-show="showNameErrorMsg">{{ 'administration_name_required_label' | translate }}</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="memoText" class="col-sm-3 control-label">{{ 'administration_memoText_label' | translate }}</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" id="memoText" placeholder="Description">{{reportCategory.memoText}}</textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="keyCode" class="col-sm-3 control-label">{{ 'administration_keyCode_label' | translate }}</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="keyCode" placeholder="Business Code" value="{{reportCategory.keyCode}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="status" class="col-sm-3 control-label">{{ 'administration_status_label' | translate }}</label>
+              <div class="col-sm-9">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="status" value="active" ng-checked="reportCategory.status">{{ 'administration_active_label' | translate }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </form>
+
+      </div><!-- /details tab -->        
+    </div><!-- /tab-content -->
+
+  </div><!-- /col -->
+</div><!-- /row -->

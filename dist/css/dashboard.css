@@ -1,0 +1,28 @@
+.layout-pf-alt.layout-pf-alt-fixed.layout-pf-alt-fixed-inner-scroll .container-pf-alt-nav-pf-vertical-alt {
+    background-color: #fff !important;
+    height: 100%;
+    overflow: auto;
+}
+
+#dashboard .row {
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.showMessages {position:absolute;top:10px;left:auto;right:10px;}
+.messageSubject {}
+.dateStamp {font-size:84%;color:#ababab;}
+
+#dahboardGraphsColumn,
+#dahboardMessagesColumn {overflow:auto;}
+#dahboardGraphsColumn ul {min-height:200px;}
+
+#dahboardMessagesColumn .list-group-item {
+    position: relative;
+    display: block;
+    padding: 5px 15px;
+    margin-left:-20px;
+    margin-bottom: -1px;
+}
+
+#dahboardMessagesColumn .list-group { margin-bottom: 10px; min-height:200px;}

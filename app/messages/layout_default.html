@@ -1,0 +1,84 @@
+<link href="../../dist/css/messagesLayout.css" rel="stylesheet" media="screen, print">
+
+<div class="row" id="topRow" cg-busy="{promise:integrationMessages.$promise,message:'',delay:0,minDuration:300,templateUrl:'../common/progress_template.html'}">
+    <div id="h1_title">
+        <span id="h1_title_span">{{ 'messages_integrationMessages_label' | translate }}</span>
+        <span class="searchFilterMessage">
+            <search-filter-message></search-filter-message>
+            {{searchFilterMessage}}
+        </span>
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" id="listTable" >
+        <tr>
+            <td id="ml">
+                <table cellpadding="0" cellspacing="0" border="0"   class="middle_list">
+                    <tr>
+                        <td class="firstChild">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-ng-click="openModal()">{{ 'BTN_search_label' | translate }}</button>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td class="mid_list" style="overflow:hidden;">
+                        <div class="mid_list">
+                            <p ng-show="!integrationMessages.length">
+                                {{ 'messages_noResults_label' | translate }}
+                            </p>
+                            <a ui-sref="{{detailsUrl}}({integrationMessageId:integrationMessage.id})" class="list-group-item" style="min-height:50px;" ng-repeat="integrationMessage in integrationMessages" ui-sref-active="itemSelected">
+                                <span class="badge hide">{{ 'messages_new_label' | translate }}</span>
+                                <div>
+                                    <i class="fa fa-comment fa-fw"></i>
+                                    {{integrationMessage.messageType}} - {{integrationMessage.testId}}
+                                </div>
+                                <div class="dateStamp">{{integrationMessage.dateStamp | saffDateTimeFormat}}</div>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="refreshListContainer">
+                        <a onclick="selectFirstItem()" ng-click="refreshData()"><span class="pull-right fa fa-refresh"></span></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td id="mc">
+            <div class="detailsColumn">
+                <div ui-view cg-busy="{promise:integrationMessage,message:'',delay:0,minDuration:300,templateUrl:'../common/progress_template.html'}"></div>
+            </div>
+        </td>
+    </tr>
+</table> 
+</div>
+<!-- /.row -->
+<script>
+
+    function setUI(){
+        topOffset = 55;
+        botOffset = 37
+        height = ((this.window.innerHeight > 0) ? this.window.innerHeight : this.screen.height) - 1;
+        height = height - topOffset;
+        if (height < 1) height = 1;
+        if (height > topOffset) {
+            $("#listTable").css("min-height", (height-topOffset-botOffset) + "px");
+            $(".middle_list").css("min-height", (height-topOffset-botOffset) + "px");
+            $("#panelDetails, .detailsColumn").css("height", (height-topOffset-botOffset) + "px");
+            $(".mid_list").css("min-height", (height-topOffset-botOffset)-84 + "px");
+        }
+
+    }
+
+    $(window).bind("resize", function() {
+        setUI()
+    });
+    var selectFirstItem = function(){
+        setTimeout(function(){
+            $('.mid_list .list-group-item').eq(0).trigger('click')
+        },500)
+    }
+
+    $(function(){  
+        setUI();
+        selectFirstItem();
+    });
+
+</script>

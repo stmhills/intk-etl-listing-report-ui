@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="msgId"> {{integrationMessage.testId}}</h2>
+    <div class="dateStamp pull-right">{{integrationMessage.dateStamp | saffDateTimeFormat}}</div>
+    
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="javascript:void(0);#details" data-toggle="tab">{{ 'messages_details_tab_label' | translate }}</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="details">
+        <div class="st_button_bar"></div>               
+        <ul class="list-group" id="detailsList">
+          <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'messages_messageType_label' | translate }}</div></th><td><div class="st_data">{{integrationMessage.messageType ?integrationMessage.messageType : "NA" }}</div></td></tr></table></li>
+          <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'messages_userName_label' | translate }}</div></th><td><div class="st_data">{{integrationMessage.userName}}</div></td></tr></table></li>
+          <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'messages_dateAndTime_label' | translate }}</div></th><td><div class="st_data">{{integrationMessage.dateStamp | saffDateTimeFormat}}</div></td></tr></table></li>
+          <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'messages_testNumber_label' | translate }}</div></th><td><div class="st_data">{{integrationMessage.testId}}</div></td></tr></table></li>
+          <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'messages_serviceGroup_label' | translate }}</div></th><td><div class="st_data">{{integrationMessage.serviceGroup}}</div></td></tr></table></li>
+          <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'messages_messageRequest_label' | translate }}</div></th><td><div class="st_data">{{integrationMessage.messageRequest}}</div></td></tr></table></li>
+        </ul>
+      </div>           
+    </div>
+
+  </div><!-- /col -->
+</div><!-- /row -->

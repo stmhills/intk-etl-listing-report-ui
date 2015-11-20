@@ -1,0 +1,117 @@
+<link href="../../dist/css/alternateLayout.css" rel="stylesheet" media="screen, print">
+
+<div class="container-fluid container-cards-pf " cg-busy="{promise:integrationMessages.$promise,message:'',delay:0,minDuration:300,templateUrl:'../common/progress_template.html'}">
+  <div class="row search">
+    <div class="col-md-12">
+       <span class="searchFilterMessage">
+            <search-filter-message></search-filter-message>
+            {{searchFilterMessage}}
+        </span>
+      <h1>Search Mesages</h1>
+      <form class="form-horizontal" role="form">
+       <div class="buttonBar">
+        <div class="form-group ">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary" ng-click="search()">Search</button>
+            <button type="reset" class="btn btn-default" ng-click="cancel()">Reset</button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail1" class="col-md-2 control-label">Message Type</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control input-md" id="st_msg_type" ng-model="messageType" placeholder="">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword1" class="col-md-2 control-label">Date Range</label>
+        <div class="col-md-8">
+          <div class="input-daterange input-group" id="datepicker">
+            <input type="text" class="input-md form-control" name="fromDate" ng-model="fromDate"/>
+            <span class="input-group-addon">to</span>
+            <input type="text" class="input-md form-control" name="toDate" ng-model="toDate"/>
+          </div>
+          <span class="text-danger" ng-show="showDateErrorMsg">Date Range is Required.</span>
+        </div>
+      </div>
+    </form>
+  </div><!-- /col -->
+</div><!-- /row -->
+<div class="row row-cards-pf">
+  <!-- Important:  if you need to nest additional .row within a .row.row-cards-pf, do *not* use .row-cards-pf on the nested .row  -->
+  <div ng-show="!integrationMessages.length">
+    No Results to display.
+  </div>
+  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" ng-repeat="integrationMessage in integrationMessages">
+    <div class="card-pf">
+      <div class="card-pf-heading">
+        <h2 class="card-pf-title">
+         {{integrationMessage.messageType}} - {{integrationMessage.testId}}
+       </h2>
+     </div>
+     <div class="card-pf-body">
+      <ul class="list-group cardList">
+        <li class="list-group-item"><table><tr><th><div class="st_label">Message Type</div></th><td><div class="st_data">{{integrationMessage.messageType ?integrationMessage.messageType : "NA" }}</div></td></tr></table></li>
+        <li class="list-group-item"><table><tr><th><div class="st_label">User Name</div></th><td><div class="st_data">{{integrationMessage.userName}}</div></td></tr></table></li>
+        <li class="list-group-item"><table><tr><th><div class="st_label">Date and Time</div></th><td><div class="st_data">{{integrationMessage.dateStamp | saffDateTimeFormat}}</div></td></tr></table></li>
+        <li class="list-group-item"><table><tr><th><div class="st_label">Test Number</div></th><td><div class="st_data">{{integrationMessage.testId}}</div></td></tr></table></li>
+        <li class="list-group-item"><table><tr><th><div class="st_label">Service Group</div></th><td><div class="st_data">{{integrationMessage.serviceGroup}}</div></td></tr></table></li>
+        <!--<li class="list-group-item"><table><tr><th><div class="st_label">Message Request</div></th><td><div class="st_data">{{integrationMessage.messageRequest}}</div></td></tr></table></li>-->
+      </ul>
+    </div>
+    <div class="card-pf-footer">
+      <!--<button class="btn btn-primary" type="button">Resend</button>
+      <button class="btn btn-default" type="button">Download Request</button>
+      <button class="btn btn-default" type="button" data-toggle="modal" data-target="#myModal">Comment</button>-->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <span class="pficon pficon-close"></span>
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Modal Title</h4>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label" for="textInput">Field One</label>
+                  <div class="col-sm-9">
+                    <input type="text" id="textInput" class="form-control"></div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="textInput2">Field Two</label>
+                    <div class="col-sm-9">
+                      <input type="text" id="textInput2" class="form-control"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="textInput3">Field Three</label>
+                      <div class="col-sm-9">
+                        <input type="text" id="textInput3" class="form-control">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-primary">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /row -->
+</div>
+<script>
+ $(function(){  
+  $('.input-daterange').datepicker({
+    orientation: "top auto",
+    todayHighlight: true,
+    toggleActive: true,
+    autoclose: true
+
+  });
+});
+</script>
