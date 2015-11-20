@@ -2,7 +2,7 @@
 
 ## [INTK-ETL-Listing-Reports](https://www.patternfly.org) reference implementation
 
-This reference implementation of INTK-UI-MASTER is a flavor of PatternFly which is based on [Bootstrap v3](http://getbootstrap.com/).  Think of PatternFly as a "skinned" version of Bootstrap with additional components and customizations.
+This reference implementation of INTK-ETL-Listing-Reports is a flavor of PatternFly which is based on [Bootstrap v3](http://getbootstrap.com/).  Think of PatternFly as a "skinned" version of Bootstrap with additional components and customizations.
 
 
 # Installation
