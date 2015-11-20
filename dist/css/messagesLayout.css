@@ -169,3 +169,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 
 /* END CUSTOM LAYOUT PAGE */
+
+/* Acordion overrides */
+.panel-group .panel-title>a:before {
+    content: none;
+    margin-right: 0px;
+    vertical-align: 0;
+}
+.panel-title a span i {font-size:75%;line-height:14px;}
+
+
+

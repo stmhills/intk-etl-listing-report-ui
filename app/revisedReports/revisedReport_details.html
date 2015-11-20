@@ -9,23 +9,34 @@
     <div class="tab-content">
       <div class="tab-pane fade in active" id="details">
         <div class="st_button_bar">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-ng-click="save()">Approve Report</button>
-          <button class="btn btn-default dropdown-toggle" type="button" data-ng-click="cancel()">Cancel Report</button>
+          <button class="btn btn-primary dropdown-toggle" type="button" data-ng-click="save()">{{ 'BTN_approveReport_label' | translate }}</button>
+          <button class="btn btn-default dropdown-toggle" type="button" data-ng-click="cancel()">{{ 'BTN_cancelReport_label' | translate }}</button>
         </div> 
 
           <uib-accordion close-others="oneAtATime">
             <uib-accordion-group is-open="status.isFirstOpen">
                 <uib-accordion-heading>
-                  Listing Report Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-up': !status.open}"></i>
+                  Listing Report Details <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isFirstOpen, 'glyphicon-chevron-up': !status.isFirstOpen}"></i>
                 </uib-accordion-heading>
                 
                   <ul class="list-group" id="detailsList">
                     <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_reportNumber_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_assignedMarks_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_engineeringOffice_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_selectionFrequency_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_primaryCEC_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_CECtest_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_dateIssued_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_hasULC_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_status_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_category_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_updateComponentsCEC_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
+                    <li class="list-group-item"><table><tr><th><div class="st_label">{{ 'listingReports_visualInspection_label' | translate }}</div></th><td><div class="st_data">{{ revisedReport.name }}</div></td></tr></table></li>
                    
                   </ul>
             </uib-accordion-group>   
             
-            <uib-accordion-group is-open="false">
+            <uib-accordion-group is-open="status.open">
                 <uib-accordion-heading>
                   Standards / Test Methods <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-up': !status.open}"></i>
                 </uib-accordion-heading>
@@ -48,8 +59,8 @@
 <script type="text/ng-template" id="group-template.html">
     <div class="panel {{panelClass || 'panel-default'}}">
       <div class="panel-heading">
-        <h4 class="panel-title" style="color:#fa39c3">
-          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span
+        <h4 ng-click="toggleOpen()" class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" uib-accordion-transclude="heading"><span
             ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
         </h4>
       </div>

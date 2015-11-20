@@ -26,7 +26,6 @@ saffModuleControllers.controller('RevisedReportDetailsCtrl',['$scope', '$locatio
     $scope.oneAtATime = true;
     $scope.status = {
 	    isFirstOpen: true,
-	    isFirstDisabled: false
 	  };
 
   }]);
